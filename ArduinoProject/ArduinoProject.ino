@@ -12,7 +12,7 @@
 #define WIFI_DEBUG 0
 
 // FULL SERVER DATA SWITCH
-#define SHOW_SERVER_DATA 1
+#define SHOW_SERVER_DATA 0
 
 // LCD
 #define LCD 0
@@ -162,6 +162,17 @@ void print_DHT_11_data()
   Serial.print("Temperatura: ");
   Serial.print(temperatura);
   Serial.println(" °C");
+
+  //si pe led
+// Convertirea float-urilor în șiruri de caractere
+  char tempStr[10]; // Buffer pentru temperatura
+  char humiStr[10]; // Buffer pentru umiditate
+  dtostrf(temperatura, 4, 2, tempStr); // Convertire temperatura în șir de caractere
+  dtostrf(umiditate, 4, 2, humiStr);   // Convertire umiditate în șir de caractere
+
+  // Afișarea pe LED matrix
+  matrix_print_text("Temp: " + String(tempStr) + "C", 50, 0);
+  matrix_print_text("Humidity: " + String(humiStr) + "%", 50, 0);
 }
 
 
